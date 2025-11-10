@@ -1,16 +1,49 @@
 <!doctype html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <title>hello-wasm example</title>
-  </head>
-  <body>
-    <script type="module">
-      import init, { calculate } from "##MODULE##";
-
+   <head>
+      <meta charset="utf-8" />
+      <title>Prime calculation</title>
+      <style>
+      body { font-family: Arial, sans-serif; margin: 2rem; }
+      .result { margin-top: 1rem; font-weight: normal; }
+      </style>
+   </head>
+   <body>
+      <script type="module">
+      import init, { get_prime_numbers } from "##MODULE##";
       init().then(() => {
-         alert(calculate(5));
+         window.get_prime_numbers = get_prime_numbers;
       });
-    </script>
-  </body>
+      </script>
+
+
+      <script>
+window.onload = function () {
+   const input = document.getElementById('numInput');
+   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { doCalc(); } });
+}
+      function doCalc() {
+         const inputEl = document.getElementById('numInput');
+         const outputEl = document.getElementById('output');
+
+         const value = parseFloat(inputEl.value);
+         if (isNaN(value)) {
+            outputEl.textContent = 'Please enter a valid number.';
+            return;
+         }
+
+         const t0 = performance.now();
+         const result = get_prime_numbers(value);
+         const t1 = performance.now();
+         const time = (t1-t0).toFixed(3);
+         outputEl.textContent = `Result in ${time} ms: ${result}`;
+      }
+      </script>
+
+      <label for="numInput">Enter a number:</label>
+      <input id="numInput" type="number" min="0" placeholder="e.g., 42">
+      <button type="button" onclick="doCalc()">Calculate</button>
+      <div class="result" id="output"></div>
+
+   </body>
 </html>

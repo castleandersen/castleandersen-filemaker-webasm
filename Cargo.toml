@@ -3,6 +3,9 @@ name = "numbertest"
 version = "0.1.0"
 author = ["castle@castleandersen.dk"]
 edition = "2024"
+description = "A simple WebAssembly FileMaker WebView test"
+repository = "https://github.com/castleandersen/castleandersen-filemaker-webasm.git"
+license = "MIT"
 
 [lib]
 crate-type=["cdylib"]
