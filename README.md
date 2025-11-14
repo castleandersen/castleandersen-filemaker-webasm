@@ -1,6 +1,6 @@
 # FileMaker WebAssembly WebView test
 
-Simple test project to run WebAssembly function inside FileMaker WebView for [EngageU 2025](https://engageu.eu). discussions.
+Simple test project to run WebAssembly function inside FileMaker WebView for [EngageU 2025](https://engageu.eu) discussions.
 
 The `package.sh` sctipt builds the WebAssembly module and creates an Matryoshka Doll of nested base64 encoded WASM and JavaScript to load it as a proof-of-concept.
 
